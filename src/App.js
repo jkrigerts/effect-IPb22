@@ -10,7 +10,13 @@ function App() {
 
   return (
     <>
-      <ToDo />
+      <ToDo {...toDo} />
+      <ToDo
+        userId={toDo.userId}
+        id={toDo.id}
+        title={toDo.title}
+        completed={toDo.completed}
+      />
     </>
   );
 }

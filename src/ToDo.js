@@ -1,14 +1,18 @@
-function ToDo() {
-  // Railij, kā uztaisīt
-  // te stāvokļa mainīgo?
-  // Railij, atsūti man saiti uz savu
-  // github projektu iekš instagram
+import { useState } from "react";
+
+function ToDo(props) {
+  // To completed izveido kā stāvokļa mainīgo
+  const [runčuks, setRunčuks] = useState(props.completed);
+  // Izveido abpusējo saistīšanu ar input
+  function handleChange(event) {
+    setRunčuks(event.target.checked);
+  }
   return (
     <>
-      <p>UserId: 1</p>
-      <p>Id: 1</p>
-      <p>delectus aut autem</p>
-      <input type="checkbox"></input>
+      <p>UserId: {props.userId}</p>
+      <p>Id: {props.id}</p>
+      <p>{props.title}</p>
+      <input type="checkbox" checked={runčuks} onChange={handleChange}></input>
     </>
   );
 }
