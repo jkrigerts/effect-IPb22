@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import ToDo from "./ToDo";
+import Comment from "./Comment";
 
 function App() {
   // Uztaisi stāvokļa mainīgo toDo
   const [toDo, setToDo] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getToDo() {
@@ -12,6 +14,7 @@ function App() {
       );
       const data = await response.json();
       setToDo(data);
+      setLoading(false);
     }
     getToDo();
   }, []);
@@ -22,16 +25,10 @@ function App() {
   //   title: "delectus aut autem",
   //   completed: false,
   // };
-
   return (
     <>
-      <ToDo {...toDo} />
-      <ToDo
-        userId={toDo.userId}
-        id={toDo.id}
-        title={toDo.title}
-        completed={toDo.completed}
-      />
+      {loading ? <p>Loading...</p> : <ToDo {...toDo} />}
+      <Comment />
     </>
   );
 }
